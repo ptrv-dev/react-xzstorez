@@ -45,3 +45,13 @@ main {
   flex: 1;
   padding: 2.5rem 0;
 }
+
+.select {
+  padding: 0.5rem 1rem;
+
+  border: 1px solid $black;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+
+  min-width: 14rem;
+}
