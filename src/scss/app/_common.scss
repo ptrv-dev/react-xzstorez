@@ -1,0 +1,33 @@
+@import './vars';
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+}
+
+.container {
+  max-width: $container-width;
+  padding: 0 $container-padding;
+  margin: 0 auto;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
