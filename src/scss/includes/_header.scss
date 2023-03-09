@@ -34,6 +34,7 @@
     gap: 3rem;
   }
   &__link {
+    position: relative;
     color: $gray;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
@@ -54,7 +55,6 @@
     }
     &.active {
       color: $black;
-      position: relative;
       &::after {
         opacity: 1;
       }
