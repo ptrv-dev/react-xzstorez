@@ -13,6 +13,9 @@
   max-width: $container-width;
   padding: 0 $container-padding;
   margin: 0 auto;
+  @media screen and (max-width: calc($container-width + 2 * $container-padding)) {
+    max-width: 768px;
+  }
 }
 
 body {
