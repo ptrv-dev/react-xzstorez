@@ -1,0 +1,31 @@
+.skeleton {
+  width: 172px;
+  height: 215px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: pulse 0.5s ease-in-out infinite alternate;
+  div {
+    background: #ccc;
+    border-radius: 0.5rem;
+  }
+  &__image {
+    width: 172px;
+    height: 172px;
+    border-radius: 50% !important;
+  }
+  &__title {
+    width: 100px;
+    height: 35px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
