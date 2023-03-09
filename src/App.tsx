@@ -10,9 +10,11 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route index element={<HomePage />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route index element={<HomePage />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   );
