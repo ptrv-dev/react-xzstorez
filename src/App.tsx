@@ -10,6 +10,7 @@ import ProductPage from './pages/ProductPage';
 import CategoriesPage from './pages/CategoriesPage';
 import AllItemsPage from './pages/AllItemsPage';
 import CartPage from './pages/CartPage';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/all-items" element={<AllItemsPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/order-complete" element={<OrderCompletePage />} />
         </Routes>
       </main>
       <Footer />
