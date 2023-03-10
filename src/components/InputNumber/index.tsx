@@ -8,6 +8,8 @@ interface InputNumberProps {
   min?: number;
   max?: number;
   name?: string;
+  onIncrease?: React.MouseEventHandler<HTMLButtonElement>;
+  onDecrease?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({
@@ -16,6 +18,8 @@ const InputNumber: React.FC<InputNumberProps> = ({
   min = 1,
   max = 999999,
   name,
+  onDecrease,
+  onIncrease,
 }) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (/^\d*$/.test(e.target.value)) {
@@ -37,7 +41,10 @@ const InputNumber: React.FC<InputNumberProps> = ({
 
   return (
     <div className={style['number']}>
-      <button className={style['number__button']} onClick={handleDecrease}>
+      <button
+        className={style['number__button']}
+        onClick={onDecrease || handleDecrease}
+      >
         -
       </button>
       <input
@@ -47,7 +54,10 @@ const InputNumber: React.FC<InputNumberProps> = ({
         className={style['number__input']}
         onChange={handleChange}
       />
-      <button className={style['number__button']} onClick={handleIncrease}>
+      <button
+        className={style['number__button']}
+        onClick={onIncrease || handleIncrease}
+      >
         +
       </button>
     </div>
