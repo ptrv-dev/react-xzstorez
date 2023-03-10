@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ProductItem } from '../../@types/serverResponse';
 import appAxios from '../../axios';
 import Button from '../../components/Button';
@@ -42,6 +43,28 @@ const CartPage: React.FC = () => {
 
   console.log('CART ITEMS', cartItems);
   console.log('PRODUCTS', products);
+
+  const navigate = useNavigate();
+
+  const handleCheckout = async () => {
+    try {
+      const cart = [];
+      for (const item of cartItems) {
+        const product = products.find((p) => p._id === item._id);
+        cart.push({
+          name: product?.title,
+          description: item.size ? `Size: ${item.size}` : undefined,
+          price: product?.price.$numberDecimal,
+          quantity: item.quantity,
+        });
+      }
+      const { data } = await appAxios.post('/payment', cart);
+      window.location.href = data.url;
+    } catch (error) {
+      console.log(error);
+      alert('Something going wrong...');
+    }
+  };
 
   return (
     <div className="cart">
@@ -149,7 +172,11 @@ const CartPage: React.FC = () => {
                   currency: 'USD',
                 })}
               </h4>
-              <Button className="cart__total-btn" style="filled">
+              <Button
+                className="cart__total-btn"
+                style="filled"
+                onClick={handleCheckout}
+              >
                 Check out
               </Button>
             </div>
