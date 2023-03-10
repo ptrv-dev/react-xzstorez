@@ -9,6 +9,7 @@ import BrandsPage from './pages/BrandsPage';
 import ProductPage from './pages/ProductPage';
 import CategoriesPage from './pages/CategoriesPage';
 import AllItemsPage from './pages/AllItemsPage';
+import CartPage from './pages/CartPage';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/all-items" element={<AllItemsPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
       <Footer />
