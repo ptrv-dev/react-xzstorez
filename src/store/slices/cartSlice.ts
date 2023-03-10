@@ -11,7 +11,7 @@ export interface CartState {
 }
 
 const initialState: CartState = {
-  items: [{ _id: '6409dfdec0262397e9abedab', size: '123', quantity: 1 }],
+  items: [],
 };
 
 export const cartSlice = createSlice({
