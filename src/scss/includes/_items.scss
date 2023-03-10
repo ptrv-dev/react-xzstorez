@@ -1,0 +1,24 @@
+.items {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__sort {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: $gray;
+    select {
+      font-size: 1rem;
+      background: none;
+      border: none;
+      color: $gray;
+    }
+  }
+}
