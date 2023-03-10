@@ -8,19 +8,24 @@ import LoadingPage from '../LoadingPage';
 import { ProductItem } from '../../@types/serverResponse';
 import InputNumber from '../../components/InputNumber';
 import Button from '../../components/Button';
+import { useAppDispatch } from '../../store/store';
+import { add } from '../../store/slices/cartSlice';
 
 const ProductPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { id } = useParams();
 
   const [product, setProduct] = React.useState<ProductItem>();
   const [notFound, setNotFound] = React.useState(false);
 
   const [quantity, setQuantity] = React.useState<number>(1);
+  const [size, setSize] = React.useState<string | undefined>();
 
   const fetchProduct = async () => {
     try {
       const { data } = await appAxios.get<ProductItem>(`/product/${id}`);
       setProduct(data);
+      if (data.sizes) setSize(data.sizes[0] || undefined);
     } catch (error) {
       if (!isAxiosError(error)) return;
       if (error.response?.status === 404) {
@@ -41,6 +46,11 @@ const ProductPage: React.FC = () => {
     );
 
   if (!product) return <LoadingPage />;
+
+  const handleAddToCart = () => {
+    console.log(size);
+    dispatch(add({ _id: product._id, size: size, quantity: quantity }));
+  };
 
   return (
     <div className="product">
@@ -70,7 +80,12 @@ const ProductPage: React.FC = () => {
           {product.sizes && product.sizes.length && (
             <div className="product__field">
               <label htmlFor="sizes">Size</label>
-              <select id="sizes" className="select">
+              <select
+                id="sizes"
+                className="select"
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+              >
                 {product.sizes.map((size, idx) => (
                   <option key={idx}>{size}</option>
                 ))}
@@ -87,7 +102,9 @@ const ProductPage: React.FC = () => {
             />
           </div>
           <div className="product__buttons">
-            <Button className="product__button">Add to cart</Button>
+            <Button className="product__button" onClick={handleAddToCart}>
+              Add to cart
+            </Button>
             <Button className="product__button" style="filled">
               Buy it now
             </Button>
