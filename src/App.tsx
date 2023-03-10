@@ -11,6 +11,7 @@ import CategoriesPage from './pages/CategoriesPage';
 import AllItemsPage from './pages/AllItemsPage';
 import CartPage from './pages/CartPage';
 import OrderCompletePage from './pages/OrderCompletePage';
+import TrackPage from './pages/TrackPage';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/all-items" element={<AllItemsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order-complete" element={<OrderCompletePage />} />
+          <Route path="/track" element={<TrackPage />} />
         </Routes>
       </main>
       <Footer />
