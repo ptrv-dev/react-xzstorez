@@ -6,6 +6,29 @@ import useWindowSize from '../../hooks/useWindowSize';
 import Logo from '../Logo';
 import Search from '../Search';
 
+const navigationList = [
+  {
+    href: '/',
+    title: 'Home',
+  },
+  {
+    href: '/brands',
+    title: 'Brands',
+  },
+  {
+    href: '/categories',
+    title: 'Categories',
+  },
+  {
+    href: '/all-items',
+    title: 'All items',
+  },
+  {
+    href: '/track',
+    title: 'Track',
+  },
+];
+
 const HeaderMenu: React.FC = () => {
   const [active, setActive] = React.useState(false);
   const location = useLocation();
@@ -26,31 +49,13 @@ const HeaderMenu: React.FC = () => {
       </button>
       <nav className={`mobile-nav ${active ? 'mobile-nav_active' : ''}`}>
         <ul className="mobile-nav__list">
-          <li className="mobile-nav__item">
-            <NavLink to={'/'} className="mobile-nav__link">
-              Home
-            </NavLink>
-          </li>
-          <li className="mobile-nav__item">
-            <NavLink to={'/brands'} className="mobile-nav__link">
-              Brands
-            </NavLink>
-          </li>
-          <li className="mobile-nav__item">
-            <NavLink to={'/categories'} className="mobile-nav__link">
-              Categories
-            </NavLink>
-          </li>
-          <li className="mobile-nav__item">
-            <NavLink to={'/all-items'} className="mobile-nav__link">
-              All items
-            </NavLink>
-          </li>
-          <li className="mobile-nav__item">
-            <NavLink to={'/contacts'} className="mobile-nav__link">
-              Contacts
-            </NavLink>
-          </li>
+          {navigationList.map((item, idx) => (
+            <li className="mobile-nav__item">
+              <NavLink to={item.href} className="mobile-nav__link">
+                {item.title}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </>
@@ -112,31 +117,13 @@ const Header: React.FC = () => {
         </div>
         <nav className="header__nav nav">
           <ul className="nav__list">
-            <li className="nav__item">
-              <NavLink to={'/'} className="nav__link">
-                Home
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink to={'/brands'} className="nav__link">
-                Brands
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink to={'/categories'} className="nav__link">
-                Categories
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink to={'/all-items'} className="nav__link">
-                All items
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink to={'/contacts'} className="nav__link">
-                Contacts
-              </NavLink>
-            </li>
+            {navigationList.map((item, idx) => (
+              <li className="nav__item">
+                <NavLink to={item.href} className="nav__link">
+                  {item.title}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
