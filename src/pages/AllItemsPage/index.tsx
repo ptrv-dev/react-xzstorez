@@ -27,6 +27,7 @@ const AllItemsPage: React.FC = () => {
   const [title, setTitle] = React.useState('All items');
   const [products, setProducts] = React.useState<ProductItem[]>([]);
   const [page, setPage] = React.useState<number>(1);
+  const [pagesCount, setPagesCount] = React.useState<number>(1);
   const [sort, setSort] = React.useState<string>(
     searchParams.get('sort') || ''
   );
@@ -48,9 +49,10 @@ const AllItemsPage: React.FC = () => {
 
   const fetchProducts = React.useCallback(async () => {
     const { data } = await appAxios.get<ProductResponse>(
-      `/product?category=${categoryId}&brand=${brandId}&sort=${sort}&order=${order}&page=${page}`
+      `/product?category=${categoryId}&brand=${brandId}&sort=${sort}&order=${order}&page=${page}&limit=1`
     );
     setProducts(data.data);
+    setPagesCount(data.pagesCount);
   }, [brandId, categoryId, order, page, sort]);
 
   React.useEffect(() => {
@@ -97,6 +99,34 @@ const AllItemsPage: React.FC = () => {
                   <ProductCardSkeleton key={idx} />
                 ))}
           </div>
+        </div>
+        <div className="pagination">
+          {page > 1 && (
+            <button
+              onClick={() => setPage((prev) => prev - 1)}
+              className="pagination__button"
+            >
+              &#60;
+            </button>
+          )}
+          {[...Array(pagesCount)].map((_, idx) => (
+            <button
+              className={`pagination__button ${
+                page === idx + 1 ? 'pagination__button_active' : ''
+              }`}
+              onClick={() => setPage(idx + 1)}
+            >
+              {idx + 1}
+            </button>
+          ))}
+          {page < pagesCount && (
+            <button
+              onClick={() => setPage((prev) => prev + 1)}
+              className="pagination__button"
+            >
+              &#62;
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  &__button {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    transition: border 0.2s ease-in-out, color 0.2s ease-in-out;
+    color: $gray;
+    &:hover {
+      color: $black;
+    }
+    &_active {
+      color: $black;
+      border-bottom: 1px solid $black;
+    }
+  }
+}
