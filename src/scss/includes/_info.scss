@@ -1,0 +1,14 @@
+.info {
+  padding: 4rem;
+  gap: 1rem;
+  background: linear-gradient(96.05deg, #e584ff 0%, #71aeff 100%);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+  h4 {
+    font-size: 1.5rem;
+  }
+}

@@ -69,6 +69,15 @@ const HomePage: React.FC = () => {
           <Button href="/brands">View all</Button>
         </div>
       </div>
+      <div className="info">
+        <h4>XZstore44 offers exclusive clothing for a cheap price</h4>
+        <p>
+          The owner of this store spent some time abroad meeting the best
+          clothing manufactureres personally, and created a resource for all
+          people to be able to access best quality clothing for an affordable
+          price
+        </p>
+      </div>
     </div>
   );
 };
