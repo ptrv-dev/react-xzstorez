@@ -62,7 +62,7 @@
   }
   &__root {
     height: 460px;
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 768px) {
       height: 100vw;
     }
   }
@@ -74,7 +74,7 @@
   &__img {
     width: calc(50% - 10px);
     height: 220px;
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 768px) {
       height: calc(50vw - 10px);
     }
   }
