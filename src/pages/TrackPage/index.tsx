@@ -61,7 +61,7 @@ const TrackPage: React.FC = () => {
 
   return (
     <div className="track">
-      <div className="track__container container">
+      <div className="track__container track__container_sm container">
         <h2 className="track__title">Track your order</h2>
         <p className="track__text">
           Enter your tracking number here to see your order status.

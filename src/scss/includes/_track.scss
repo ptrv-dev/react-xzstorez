@@ -1,9 +1,12 @@
 .track {
+  padding: 4rem 0;
   &__container {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 4rem 0;
+    &_sm {
+      max-width: 480px;
+    }
   }
   &__row {
     display: flex;
@@ -23,6 +26,7 @@
   }
   &__text {
     margin: 1rem 0;
+    text-align: center;
   }
   &__input {
     padding: 0.5rem 1rem;
