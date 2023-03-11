@@ -22,7 +22,7 @@ const CartPage: React.FC = () => {
       products.push(data);
     }
     setProducts(products);
-  }, []);
+  }, [cartItems]);
 
   const calculateTotal = () => {
     let total = 0;
@@ -34,15 +34,13 @@ const CartPage: React.FC = () => {
   };
 
   React.useEffect(() => {
+    console.log('CART ITEMS UPDAte');
     fetchProducts();
   }, [cartItems]);
 
   React.useEffect(() => {
     calculateTotal();
   }, [products, cartItems]);
-
-  console.log('CART ITEMS', cartItems);
-  console.log('PRODUCTS', products);
 
   const navigate = useNavigate();
 

@@ -12,8 +12,28 @@ import AllItemsPage from './pages/AllItemsPage';
 import CartPage from './pages/CartPage';
 import OrderCompletePage from './pages/OrderCompletePage';
 import TrackPage from './pages/TrackPage';
+import { useAppDispatch, useAppSelector } from './store/store';
+import { setCart } from './store/slices/cartSlice';
 
 const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.cart.items);
+
+  const cartItemsSaveToLS = () => {
+    window.localStorage.setItem('cart', JSON.stringify(cartItems));
+    console.log('save to LS!!!');
+  };
+
+  const getCartItemsFromLS = () => {
+    const cartItems =
+      JSON.parse(window.localStorage.getItem('cart') || '') || [];
+    console.log('get from LS!!!');
+    dispatch(setCart(cartItems));
+  };
+
+  React.useEffect(getCartItemsFromLS, []);
+  React.useEffect(cartItemsSaveToLS, [cartItems]);
+
   return (
     <>
       <Header />
