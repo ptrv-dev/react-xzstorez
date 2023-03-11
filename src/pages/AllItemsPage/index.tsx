@@ -49,7 +49,7 @@ const AllItemsPage: React.FC = () => {
 
   const fetchProducts = React.useCallback(async () => {
     const { data } = await appAxios.get<ProductResponse>(
-      `/product?category=${categoryId}&brand=${brandId}&sort=${sort}&order=${order}&page=${page}&limit=1`
+      `/product?category=${categoryId}&brand=${brandId}&sort=${sort}&order=${order}&page=${page}`
     );
     setProducts(data.data);
     setPagesCount(data.pagesCount);
