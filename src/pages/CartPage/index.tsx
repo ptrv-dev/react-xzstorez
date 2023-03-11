@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ProductItem } from '../../@types/serverResponse';
 import appAxios from '../../axios';
 import Button from '../../components/Button';
@@ -34,15 +33,12 @@ const CartPage: React.FC = () => {
   };
 
   React.useEffect(() => {
-    console.log('CART ITEMS UPDAte');
     fetchProducts();
   }, [cartItems]);
 
   React.useEffect(() => {
     calculateTotal();
   }, [products, cartItems]);
-
-  const navigate = useNavigate();
 
   const handleCheckout = async () => {
     try {
