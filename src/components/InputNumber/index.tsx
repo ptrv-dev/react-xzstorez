@@ -3,6 +3,7 @@ import React from 'react';
 import style from './InputNumber.module.scss';
 
 interface InputNumberProps {
+  className?: string;
   value?: number;
   setValue?: React.Dispatch<React.SetStateAction<number>>;
   min?: number;
@@ -13,6 +14,7 @@ interface InputNumberProps {
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({
+  className,
   value,
   setValue,
   min = 1,
@@ -40,7 +42,7 @@ const InputNumber: React.FC<InputNumberProps> = ({
   };
 
   return (
-    <div className={style['number']}>
+    <div className={`${style['number']} ${className ? className : ''}`}>
       <button
         className={style['number__button']}
         onClick={onDecrease || handleDecrease}

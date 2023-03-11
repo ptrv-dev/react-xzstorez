@@ -100,6 +100,7 @@ const CartPage: React.FC = () => {
                     </div>
                     <div className="cart-item__col cart-item__col_row">
                       <InputNumber
+                        className="cart-item__input"
                         value={cartItems[idx]?.quantity}
                         onIncrease={() => {
                           dispatch(
