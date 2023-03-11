@@ -77,7 +77,7 @@ const ProductPage: React.FC = () => {
               currency: 'USD',
             })}
           </p>
-          {product.sizes && product.sizes.length && (
+          {Boolean(product.sizes?.length) && (
             <div className="product__field">
               <label htmlFor="sizes">Size</label>
               <select
@@ -86,7 +86,7 @@ const ProductPage: React.FC = () => {
                 value={size}
                 onChange={(e) => setSize(e.target.value)}
               >
-                {product.sizes.map((size, idx) => (
+                {product.sizes?.map((size, idx) => (
                   <option key={idx}>{size}</option>
                 ))}
               </select>
