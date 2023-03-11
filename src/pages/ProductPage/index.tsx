@@ -52,6 +52,24 @@ const ProductPage: React.FC = () => {
     dispatch(add({ _id: product._id, size: size, quantity: quantity }));
   };
 
+  const handleCheckout = async () => {
+    try {
+      const cart = [
+        {
+          name: product.title,
+          description: size ? `Size: ${size}` : undefined,
+          price: product?.price.$numberDecimal,
+          quantity,
+        },
+      ];
+      const { data } = await appAxios.post('/payment', cart);
+      window.location.href = data.url;
+    } catch (error) {
+      console.log(error);
+      alert('Something going wrong...');
+    }
+  };
+
   return (
     <div className="product">
       <div className="product__container container">
@@ -105,7 +123,11 @@ const ProductPage: React.FC = () => {
             <Button className="product__button" onClick={handleAddToCart}>
               Add to cart
             </Button>
-            <Button className="product__button" style="filled">
+            <Button
+              className="product__button"
+              style="filled"
+              onClick={handleCheckout}
+            >
               Buy it now
             </Button>
           </div>
