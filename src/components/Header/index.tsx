@@ -37,6 +37,12 @@ const HeaderMenu: React.FC = () => {
     setActive(false);
   }, [location]);
 
+  React.useEffect(() => {
+    active
+      ? (window.onscroll = (e) => window.scrollTo(0, 0))
+      : (window.onscroll = null);
+  }, [active]);
+
   return (
     <>
       <button
@@ -47,6 +53,11 @@ const HeaderMenu: React.FC = () => {
         <span></span>
         <span></span>
       </button>
+      <div
+        className={`header__backdrop ${
+          active ? 'header__backdrop_active' : ''
+        }`}
+      />
       <nav className={`mobile-nav ${active ? 'mobile-nav_active' : ''}`}>
         <ul className="mobile-nav__list">
           {navigationList.map((item, idx) => (
