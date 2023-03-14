@@ -10,10 +10,14 @@ import InputNumber from '../../components/InputNumber';
 import Button from '../../components/Button';
 import { useAppDispatch } from '../../store/store';
 import { add } from '../../store/slices/cartSlice';
+import useWindowSize from '../../hooks/useWindowSize';
+import ProductSlider from '../../components/ProductSlider';
 
 const ProductPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
+
+  const [width] = useWindowSize();
 
   const [product, setProduct] = React.useState<ProductItem>();
   const [notFound, setNotFound] = React.useState(false);
@@ -74,18 +78,28 @@ const ProductPage: React.FC = () => {
     <div className="product">
       <div className="product__container container">
         <div className="product__col">
-          <div className="product__images product-images">
-            <div className="product-images__root">
-              <img src={`\\${product.images[0]}`} alt={product.title} />
+          {width > 768 ? (
+            <div className="product__images product-images">
+              <div className="product-images__root">
+                <img src={`\\${product.images[0]}`} alt={product.title} />
+              </div>
+              <div className="product-images__list">
+                {product.images.slice(1).map((image, idx) => (
+                  <div key={idx} className="product-images__img">
+                    <img src={`\\${image}`} alt={product.title} />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="product-images__list">
-              {product.images.slice(1).map((image, idx) => (
-                <div key={idx} className="product-images__img">
+          ) : (
+            <ProductSlider>
+              {product.images.map((image, idx) => (
+                <div className="product-images__slider-img">
                   <img src={`\\${image}`} alt={product.title} />
                 </div>
               ))}
-            </div>
-          </div>
+            </ProductSlider>
+          )}
         </div>
         <div className="product__col">
           <h1 className="product__title">{product.title}</h1>

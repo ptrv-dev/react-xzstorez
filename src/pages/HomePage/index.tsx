@@ -11,6 +11,7 @@ import BrandCardSkeleton from '../../components/BrandCardSkeleton';
 import Button from '../../components/Button';
 import ProductCard from '../../components/ProductCard';
 import ProductCardSkeleton from '../../components/ProductCardSkeleton';
+import Subscribe from '../../components/Subscribe';
 
 const HomePage: React.FC = () => {
   const [products, setProducts] = React.useState<ProductItem[]>([]);
@@ -86,6 +87,7 @@ const HomePage: React.FC = () => {
           </p>
         </div>
       </div>
+      <Subscribe />
     </>
   );
 };

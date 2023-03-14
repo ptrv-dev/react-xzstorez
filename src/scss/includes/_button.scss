@@ -8,13 +8,17 @@
   border: none;
   font-size: 1.125rem;
   text-decoration: none;
+  @media screen and (max-width: 767.98px) {
+    font-size: 15px;
+    padding: 10px 1.5rem;
+  }
   &_filled {
     background: $black;
     color: $white;
   }
   &_outlined {
     background: none;
-    border: 1px solid $black;
+    border: 1px solid rgba($black, 0.5);
     color: $black;
   }
 }
