@@ -48,6 +48,7 @@ main {
 }
 
 .select {
+  color: $black;
   padding: 0.5rem 1rem;
 
   border: 1px solid $black;
@@ -55,4 +56,5 @@ main {
   font-size: 1rem;
 
   min-width: 14rem;
+  background-color: transparent;
 }
