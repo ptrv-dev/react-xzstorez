@@ -33,8 +33,6 @@ const HomePage: React.FC = () => {
     fetchBrands();
   }, []);
 
-  console.log(products);
-
   return (
     <>
       <div

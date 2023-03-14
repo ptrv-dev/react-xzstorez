@@ -55,7 +55,6 @@ export const cartSlice = createSlice({
       } else state.items.push(action.payload);
     },
     remove: (state, action: PayloadAction<{ _id: string; size?: string }>) => {
-      console.log('IMP', action.payload);
       const product = state.items.find(
         (item) =>
           item._id === action.payload._id && item.size === action.payload.size

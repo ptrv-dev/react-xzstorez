@@ -115,6 +115,7 @@ const AllItemsPage: React.FC = () => {
                 page === idx + 1 ? 'pagination__button_active' : ''
               }`}
               onClick={() => setPage(idx + 1)}
+              key={idx}
             >
               {idx + 1}
             </button>

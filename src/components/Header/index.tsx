@@ -87,7 +87,7 @@ const HeaderMenu: React.FC = () => {
       <nav className={`mobile-nav ${active ? 'mobile-nav_active' : ''}`}>
         <ul className="mobile-nav__list">
           {navigationList.map((item, idx) => (
-            <li className="mobile-nav__item">
+            <li className="mobile-nav__item" key={idx}>
               <NavLink to={item.href} className="mobile-nav__link">
                 {item.title}
               </NavLink>
@@ -165,7 +165,7 @@ const Header: React.FC = () => {
         <nav className="header__nav nav">
           <ul className="nav__list">
             {navigationList.map((item, idx) => (
-              <li className="nav__item">
+              <li className="nav__item" key={idx}>
                 <NavLink to={item.href} className="nav__link">
                   {item.title}
                 </NavLink>

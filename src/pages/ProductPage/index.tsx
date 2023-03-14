@@ -52,7 +52,6 @@ const ProductPage: React.FC = () => {
   if (!product) return <LoadingPage />;
 
   const handleAddToCart = () => {
-    console.log(size);
     dispatch(add({ _id: product._id, size: size, quantity: quantity }));
   };
 
