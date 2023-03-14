@@ -17,14 +17,19 @@
       height: 172px;
     }
     @media screen and (max-width: 768px) {
-      height: 300px;
+      height: calc(50vw - 20px);
     }
-    @media screen and (max-width: 600px) {
-      height: 260px;
-    }
-    @media screen and (max-width: 500px) {
-      height: 320px;
-    }
+    // @media screen and (max-width: 600px) {
+    //   height: 260px;
+    // }
+    // @media screen and (max-width: 500px) {
+    //   height: 220px;
+    // }
+    // @media screen and (max-width: 425px) {
+    //   height: calc(50vw - 20px);
+    // }
+    // @media screen and (max-width: 375px) {
+    // }
   }
   &__body {
     padding: 0.5rem 1rem;
