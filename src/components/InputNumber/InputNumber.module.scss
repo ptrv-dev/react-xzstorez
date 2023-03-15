@@ -3,7 +3,7 @@
 .number {
   display: inline-flex;
   align-items: center;
-  border: 1px solid $black;
+  border: 1px solid rgba($black, 0.75);
   border-radius: 0.5rem;
   width: 10rem;
   &__button {
