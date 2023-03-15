@@ -5,7 +5,8 @@
   align-items: center;
   border: 1px solid rgba($black, 0.75);
   border-radius: 0.5rem;
-  width: 10rem;
+  width: 9rem;
+  height: 45px;
   &__button {
     padding: 0.5rem 1rem;
     border: none;
@@ -15,7 +16,7 @@
   &__input {
     background: none;
     border: none;
-    padding: 0.5rem;
+    padding: 0.5rem 0.25rem;
     outline: none;
     width: 1px;
     flex: 1;
