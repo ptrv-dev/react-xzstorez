@@ -18,14 +18,18 @@ const HomePage: React.FC = () => {
   const [isMore, setIsMore] = React.useState(false);
   const [brands, setBrands] = React.useState<BrandItem[]>([]);
 
+  const [brandsLoading, setBrandsLoading] = React.useState(true);
+
   const fetchProducts = async () => {
-    const { data } = await appAxios.get<ProductResponse>('/product?limit=12');
+    const { data } = await appAxios.get<ProductResponse>('/product?limit=16');
     setIsMore(data.pagesCount > 1);
     setProducts(data.data);
   };
   const fetchBrands = async () => {
+    setBrandsLoading(true);
     const { data } = await appAxios.get<BrandResponse>('/brand?limit=12');
     setBrands(data.data);
+    setBrandsLoading(false);
   };
 
   React.useEffect(() => {
@@ -56,23 +60,25 @@ const HomePage: React.FC = () => {
             {isMore && <Button href="/all-items">View all</Button>}
           </div>
         </div>
-        <div className="section">
-          <div className="section__header">
-            <h2 className="section__title">Brands</h2>
-          </div>
-          <div className="section__body">
-            <div className="section__grid section__grid_5">
-              {brands.length
-                ? brands.map((brand) => (
-                    <BrandCard key={brand._id} {...brand} />
-                  ))
-                : [...Array(10)].map((_, idx) => (
-                    <BrandCardSkeleton key={idx} />
-                  ))}
+        {!brandsLoading && !!brands.length && (
+          <div className="section">
+            <div className="section__header">
+              <h2 className="section__title">Brands</h2>
             </div>
-            <Button href="/brands">View all</Button>
+            <div className="section__body">
+              <div className="section__grid section__grid_5">
+                {!brandsLoading
+                  ? brands.map((brand) => (
+                      <BrandCard key={brand._id} {...brand} />
+                    ))
+                  : [...Array(10)].map((_, idx) => (
+                      <BrandCardSkeleton key={idx} />
+                    ))}
+              </div>
+              <Button href="/brands">View all</Button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="info">
         <div className="info__container container">
