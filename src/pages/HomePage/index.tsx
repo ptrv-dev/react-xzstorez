@@ -82,7 +82,7 @@ const HomePage: React.FC = () => {
       </div>
       <div className="info">
         <div className="info__container container">
-          <h4>XZstore44 offers exclusive clothing for a cheap price</h4>
+          <h4>XZstore offers exclusive clothing for a cheap price</h4>
           <p>
             The owner of this store spent some time abroad meeting the best
             clothing manufactureres personally, and created a resource for all
