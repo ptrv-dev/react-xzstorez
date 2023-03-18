@@ -12,10 +12,6 @@ const navigationList = [
     title: 'Home',
   },
   {
-    href: '/brands',
-    title: 'Brands',
-  },
-  {
     href: '/categories',
     title: 'Categories',
   },
