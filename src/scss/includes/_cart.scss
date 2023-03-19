@@ -1,4 +1,7 @@
 .cart {
+  &__list {
+    margin-top: 24px;
+  }
   &__empty {
     padding: 10rem 0;
     text-align: center;
@@ -11,90 +14,55 @@
       font-weight: 500;
     }
   }
-  &__total {
+  &__old-price {
+    margin-left: 4px;
+    font-size: 16px;
+    color: rgba($black, 0.6);
+    text-decoration: line-through;
+  }
+  &__total-top {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 1rem;
     h4 {
       font-size: 1.5rem;
       font-weight: normal;
+      display: inline-flex;
+      align-items: flex-start;
+    }
+  }
+  &__total {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 300px;
+    float: right;
+    @media screen and (max-width: 425px) {
+      width: 100%;
     }
     &-btn {
       min-width: 14rem;
+      width: 100%;
     }
   }
-}
-.cart-item {
-  padding: 1rem 0;
-  display: flex;
-  gap: 20px;
-  &__image {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-  }
-  &__col {
+  &__field {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    // flex: 1;
-    justify-content: center;
-    &_row {
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-    &_lg {
-      flex: 1;
-    }
+    width: 100%;
   }
-  &__title {
-    font-size: 18px;
-    font-weight: 500;
-  }
-  &__price {
-  }
-  &__remove {
-    width: 1rem;
-    height: 1rem;
-    padding: 0;
-    margin: 0;
-    border: none;
+  &__input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #000;
     background: none;
-  }
-  @media screen and (max-width: 767.98px) {
-    &__input {
-      max-width: 8rem;
-    }
-    &__image {
-      width: 6rem;
-      height: 6rem;
-    }
-  }
-  @media screen and (max-width: 550px) {
-    &__input {
-      max-width: 6rem;
-      button {
-        padding: 0.25rem 0.5rem;
-      }
-      input {
-        padding: 0.25rem 0.5rem;
-      }
-    }
-    &__image {
-      width: 5rem;
-      height: 5rem;
-    }
-  }
-  @media screen and (max-width: 450px) {
-    gap: 0.5rem;
-    &__image {
-      width: 4rem;
-      height: 4rem;
-    }
-    &__title {
-      font-size: 1rem;
+    font-size: 1rem;
+    color: #000;
+    border-radius: 0.5rem;
+    flex: 1 1;
+    min-width: 0;
+    width: 100%;
+    &_error {
+      border-color: #dd2525;
     }
   }
 }

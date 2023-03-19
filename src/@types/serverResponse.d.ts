@@ -22,7 +22,7 @@ export interface CategoryResponse {
   data: CategoryItem[];
 }
 
-interface Price {
+interface Float {
   $numberDecimal: string;
 }
 
@@ -34,7 +34,7 @@ export interface ProductItem {
   category?: CategoryItem;
   brand?: BrandItem;
   sizes?: string[];
-  price: Price;
+  price: Float;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
@@ -151,4 +151,15 @@ export interface getPaymentResponse {
   success_url: string;
   total_details: TotalDetails;
   url?: any;
+}
+
+export interface CouponItem {
+  _id: string;
+  name: string;
+  coupon: string;
+  percent: Float;
+  uses: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
