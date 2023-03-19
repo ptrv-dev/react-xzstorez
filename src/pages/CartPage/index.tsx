@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import { decrease, increase, remove } from '../../store/slices/cartSlice';
 
 import { CouponItem, ProductItem } from '../../@types/serverResponse';
+import { debounce } from '../../utils/debounce';
 
 const CartPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -77,8 +78,6 @@ const CartPage: React.FC = () => {
     }
   }, [coupon]);
 
-  console.log(oldPrice);
-
   React.useEffect(() => {
     fetchProducts();
   }, [cartItems, fetchProducts]);
@@ -90,6 +89,14 @@ const CartPage: React.FC = () => {
   React.useEffect(() => {
     fetchCoupon();
   }, [fetchCoupon]);
+
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCoupon(event.target.value);
+  };
+
+  const debouncedChangeHandler = React.useMemo(() => {
+    return debounce(changeHandler, 500);
+  }, []);
 
   if (!cartItems.length)
     return (
@@ -170,8 +177,8 @@ const CartPage: React.FC = () => {
               className="cart__input"
               type="text"
               placeholder="Enter a coupon if you have one"
-              value={coupon}
-              onChange={(e) => setCoupon(e.target.value)}
+              // value={coupon}
+              onChange={debouncedChangeHandler}
             />
           </div>
           <Button
