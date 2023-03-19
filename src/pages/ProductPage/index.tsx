@@ -93,7 +93,7 @@ const ProductPage: React.FC = () => {
           ) : (
             <ProductSlider>
               {product.images.map((image, idx) => (
-                <div className="product-images__slider-img">
+                <div key={idx} className="product-images__slider-img">
                   <img src={`\\${image}`} alt={product.title} />
                 </div>
               ))}
