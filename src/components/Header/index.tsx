@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import useWindowSize from '../../hooks/useWindowSize';
+import { useAppSelector } from '../../store/store';
 
 import Logo from '../Logo';
 import Search from '../Search';
@@ -98,6 +99,8 @@ const HeaderMenu: React.FC = () => {
 const Header: React.FC = () => {
   const [width] = useWindowSize();
 
+  const cartItemsCount = useAppSelector((state) => state.cart.items).length;
+
   if (width < 768)
     return (
       <div className="header">
@@ -112,6 +115,7 @@ const Header: React.FC = () => {
           <div className="header__col">
             <Search />
             <Link to={'/cart'} className="header__cart">
+              <span>{cartItemsCount}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -143,6 +147,7 @@ const Header: React.FC = () => {
           <Search />
           <Logo />
           <Link to={'/cart'} className="header__cart">
+            <span>{cartItemsCount}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
