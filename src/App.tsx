@@ -24,8 +24,7 @@ const App: React.FC = () => {
   };
 
   const getCartItemsFromLS = () => {
-    const cartItems =
-      JSON.parse(window.localStorage.getItem('cart') || '[]') || [];
+    const cartItems = JSON.parse(window.localStorage.getItem('cart') || '[]');
     dispatch(setCart(cartItems));
   };
 

@@ -1,11 +1,12 @@
 import React from 'react';
-import { CouponItem, ProductItem } from '../../@types/serverResponse';
 import appAxios from '../../axios';
 import Button from '../../components/Button';
 import CartItem from '../../components/CartItem';
-import InputNumber from '../../components/InputNumber';
-import { decrease, increase, remove } from '../../store/slices/cartSlice';
+
 import { useAppDispatch, useAppSelector } from '../../store/store';
+import { decrease, increase, remove } from '../../store/slices/cartSlice';
+
+import { CouponItem, ProductItem } from '../../@types/serverResponse';
 
 const CartPage: React.FC = () => {
   const dispatch = useAppDispatch();
