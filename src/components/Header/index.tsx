@@ -115,7 +115,7 @@ const Header: React.FC = () => {
           <div className="header__col">
             <Search />
             <Link to={'/cart'} className="header__cart">
-              <span>{cartItemsCount}</span>
+              {!!cartItemsCount && <span>{cartItemsCount}</span>}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -147,7 +147,7 @@ const Header: React.FC = () => {
           <Search />
           <Logo />
           <Link to={'/cart'} className="header__cart">
-            <span>{cartItemsCount}</span>
+            {!!cartItemsCount && <span>{cartItemsCount}</span>}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
