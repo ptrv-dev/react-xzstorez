@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPaymentResponse } from '../../@types/serverResponse';
+import { getPaymentResponse, trackResponse } from '../../@types/serverResponse';
 import appAxios from '../../axios';
 import Button from '../../components/Button';
 import LoadingPage from '../LoadingPage';
@@ -8,12 +8,12 @@ const TrackPage: React.FC = () => {
   const [error, setError] = React.useState<boolean>(false);
   const [value, setValue] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [data, setData] = React.useState<getPaymentResponse>();
+  const [data, setData] = React.useState<trackResponse>();
 
   const handleTrack = async () => {
     setLoading(true);
     try {
-      const { data } = await appAxios.get(`/order/${value}`);
+      const { data } = await appAxios.get<trackResponse>(`/track/${value}`);
       setData(data);
     } catch (error) {
       setError(true);
@@ -34,25 +34,19 @@ const TrackPage: React.FC = () => {
             </h2>
             <div className="track-info__field">
               <p>Name:</p>
-              <strong>{data.customer_details.name}</strong>
+              <strong>{data.fullName}</strong>
             </div>
             <div className="track-info__field">
               <p>Email:</p>
-              <strong>{data.customer_details.email}</strong>
+              <strong>{data.email}</strong>
             </div>
             <div className="track-info__field">
               <p>Phone:</p>
-              <strong>{data.customer_details.phone}</strong>
+              <strong>{data.phone}</strong>
             </div>
             <div className="track-info__field">
               <p>Delivery address:</p>
-              <strong>{`${data.customer_details.address.country},${
-                data.customer_details.address.state
-                  ? ' ' + data.customer_details.address.state + ','
-                  : ''
-              } ${data.customer_details.address.city}, ${
-                data.customer_details.address.line1
-              }`}</strong>
+              <strong>{data.address}</strong>
             </div>
           </div>
         </div>

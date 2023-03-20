@@ -163,3 +163,10 @@ export interface CouponItem {
   updatedAt: string;
   __v: number;
 }
+
+export interface trackResponse {
+  fullName: string;
+  email: string;
+  phone: string;
+  address: string;
+}
