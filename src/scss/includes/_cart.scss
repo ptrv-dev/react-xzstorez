@@ -50,6 +50,9 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
+    label {
+      font-size: 1.25rem;
+    }
   }
   &__input {
     padding: 0.5rem 1rem;
@@ -63,6 +66,38 @@
     width: 100%;
     &_error {
       border-color: #dd2525;
+    }
+  }
+}
+.cart-method {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  &__title {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+  &__row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  &__item {
+    cursor: pointer;
+    max-width: 50%;
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid $black;
+    font-size: 13px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+    &_active {
+      opacity: 1;
     }
   }
 }
