@@ -8,6 +8,8 @@ const OrderCompletePage: React.FC = () => {
   const [orderNumber, setOrderNumber] = React.useState<string | undefined>();
   const [loading, setLoading] = React.useState(true);
 
+  const merchant = searchParams.get('merchant');
+
   const createOrder = async () => {
     try {
       const { data } = await appAxios.post('/order', {
@@ -21,8 +23,28 @@ const OrderCompletePage: React.FC = () => {
     }
   };
 
+  const sellixOrder = async () => {
+    try {
+      const uniqueId = searchParams.get('uniqueId');
+      const orderId = searchParams.get('orderId');
+      const { data } = await appAxios.post('/order/sellix/check', {
+        uniqueId,
+        orderId,
+      });
+      setOrderNumber(data.track);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      alert('Error!');
+    }
+  };
+
   React.useEffect(() => {
-    createOrder();
+    if (merchant === 'sellix') {
+      sellixOrder();
+    } else {
+      createOrder();
+    }
   }, []);
 
   if (loading) return <LoadingPage />;
