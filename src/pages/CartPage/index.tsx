@@ -9,8 +9,10 @@ import { decrease, increase, remove } from '../../store/slices/cartSlice';
 import { CouponItem, ProductItem } from '../../@types/serverResponse';
 import { debounce } from '../../utils/debounce';
 import LoadingPage from '../LoadingPage';
+import { useNavigate } from 'react-router';
 
 const CartPage: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const cartItems = useAppSelector((state) => state.cart.items);
@@ -50,7 +52,6 @@ const CartPage: React.FC = () => {
 
   const handleCheckout = async () => {
     try {
-      setLoading(true);
       const cart = [];
       for (const item of cartItems) {
         const product = products.find((p) => p._id === item._id);
@@ -62,13 +63,14 @@ const CartPage: React.FC = () => {
         });
       }
       if (paymentMethod === 'card') {
+        setLoading(true);
         const { data } = await appAxios.post('/payment', {
           cart,
           coupon: discount ? coupon : undefined,
         });
         window.location.href = data.url;
       } else if (paymentMethod === 'crypto') {
-        alert('crypto god');
+        navigate('/order?coupon=' + coupon);
       }
     } catch (error) {
       console.log(error);

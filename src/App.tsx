@@ -14,6 +14,7 @@ import OrderCompletePage from './pages/OrderCompletePage';
 import TrackPage from './pages/TrackPage';
 import { useAppDispatch, useAppSelector } from './store/store';
 import { setCart } from './store/slices/cartSlice';
+import ShippingPage from './pages/ShippingPage';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -44,6 +45,7 @@ const App: React.FC = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order-complete" element={<OrderCompletePage />} />
           <Route path="/track" element={<TrackPage />} />
+          <Route path="/order" element={<ShippingPage />} />
         </Routes>
       </main>
       <Footer />

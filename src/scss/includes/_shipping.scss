@@ -1,0 +1,38 @@
+.shipping {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+}
+.shipping-form {
+  max-width: 425px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  &__field {
+    display: flex;
+    flex-direction: column;
+    label {
+    }
+    input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #000;
+      background: none;
+      font-size: 1rem;
+      color: #000;
+      border-radius: 0.5rem;
+      flex: 1 1;
+      min-width: 0;
+    }
+    p {
+      color: #dd2525;
+      font-size: 13px;
+    }
+  }
+  &__btn {
+    margin-top: 0.5rem;
+  }
+}
