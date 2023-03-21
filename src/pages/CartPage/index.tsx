@@ -137,7 +137,7 @@ const CartPage: React.FC = () => {
         <div className="cart__list">
           {cartItems.map((item, idx) => (
             <CartItem
-              key={idx}
+              key={item._id + item.size}
               _id={item._id}
               quantity={item.quantity}
               size={item.size}
