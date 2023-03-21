@@ -73,6 +73,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  &__badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
   &__title {
     font-size: 1.25rem;
     font-weight: normal;
@@ -82,6 +87,7 @@
     gap: 0.5rem;
   }
   &__item {
+    position: relative;
     cursor: pointer;
     max-width: 50%;
     display: inline-flex;

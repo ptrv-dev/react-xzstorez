@@ -6,7 +6,11 @@ import CartItem from '../../components/CartItem';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { decrease, increase, remove } from '../../store/slices/cartSlice';
 
-import { CouponItem, ProductItem } from '../../@types/serverResponse';
+import {
+  CouponItem,
+  ICryptoDiscountResponse,
+  ProductItem,
+} from '../../@types/serverResponse';
 import { debounce } from '../../utils/debounce';
 import LoadingPage from '../LoadingPage';
 import { useNavigate } from 'react-router';
@@ -16,6 +20,7 @@ const CartPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const cartItems = useAppSelector((state) => state.cart.items);
+  const [cryptoDiscount, setCryptoDiscount] = React.useState<number>(0);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [totalPrice, setTotalPrice] = React.useState<number>(0);
   const [oldPrice, setOldPrice] = React.useState<number>(0);
@@ -41,14 +46,19 @@ const CartPage: React.FC = () => {
       const product = products.find((product) => product._id === item._id);
       total += item.quantity * Number(product?.price.$numberDecimal) || 0;
     });
-    if (discount) {
+    if (discount && paymentMethod === 'card') {
       setOldPrice(total);
       setTotalPrice(total - (total * discount) / 100);
+    } else if (cryptoDiscount && paymentMethod === 'crypto') {
+      setOldPrice(total);
+      setTotalPrice(
+        total - (total * cryptoDiscount) / 100 - (total * discount) / 100
+      );
     } else {
       setTotalPrice(total);
       setOldPrice(0);
     }
-  }, [products, cartItems, discount]);
+  }, [products, cartItems, discount, cryptoDiscount, paymentMethod]);
 
   const handleCheckout = async () => {
     try {
@@ -92,17 +102,35 @@ const CartPage: React.FC = () => {
     }
   }, [coupon]);
 
+  const fetchCryptoDiscount = React.useCallback(async () => {
+    try {
+      const { data } = await appAxios.get<ICryptoDiscountResponse>(
+        '/crypto-discount'
+      );
+      setCryptoDiscount(Number(data.value.$numberDecimal));
+    } catch (error) {
+      setCryptoDiscount(0);
+      console.log(error);
+    }
+  }, []);
+
   React.useEffect(() => {
     fetchProducts();
   }, [cartItems, fetchProducts]);
 
   React.useEffect(() => {
     calculateTotal();
-  }, [products, cartItems, calculateTotal]);
+  }, [products, cartItems, calculateTotal, paymentMethod]);
 
   React.useEffect(() => {
     fetchCoupon();
   }, [fetchCoupon]);
+
+  React.useEffect(() => {
+    fetchCryptoDiscount();
+  }, [cryptoDiscount]);
+
+  console.log(cryptoDiscount);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCoupon(event.target.value);
@@ -226,6 +254,9 @@ const CartPage: React.FC = () => {
                   setPaymentMethod('crypto');
                 }}
               >
+                {!!cryptoDiscount && (
+                  <span className="cart-method__badge">-{cryptoDiscount}%</span>
+                )}
                 <svg
                   width="24"
                   height="24"
@@ -299,6 +330,9 @@ const CartPage: React.FC = () => {
           </div>
           <div className="cart__total-top">
             {Boolean(discount) && <p>Coupon discount ({discount}%)</p>}
+            {Boolean(cryptoDiscount) && paymentMethod === 'crypto' && (
+              <p>Crypto payment discount ({cryptoDiscount}%)</p>
+            )}
             <h4>
               Total{' '}
               {totalPrice.toLocaleString('en-US', {

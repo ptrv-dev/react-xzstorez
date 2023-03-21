@@ -170,3 +170,7 @@ export interface trackResponse {
   phone: string;
   address: string;
 }
+
+export interface ICryptoDiscountResponse {
+  value: Float;
+}
