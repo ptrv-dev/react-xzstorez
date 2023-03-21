@@ -74,7 +74,7 @@ const CartPage: React.FC = () => {
       }
       if (paymentMethod === 'card') {
         setLoading(true);
-        const { data } = await appAxios.post('/payment', {
+        const { data } = await appAxios.post('/payment/squareup', {
           cart,
           coupon: discount ? coupon : undefined,
         });

@@ -9,11 +9,12 @@ const OrderCompletePage: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
 
   const merchant = searchParams.get('merchant');
+  const orderId = searchParams.get('orderId');
 
   const createOrder = async () => {
     try {
-      const { data } = await appAxios.post('/order', {
-        session_id: searchParams.get('session_id'),
+      const { data } = await appAxios.post('/order/squareup', {
+        orderId,
       });
       setOrderNumber(data.track);
       setLoading(false);
