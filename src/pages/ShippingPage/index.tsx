@@ -23,6 +23,7 @@ const ShippingPage: React.FC = () => {
 
   const [params] = useSearchParams();
   const coupon = params.get('coupon');
+  const invite = params.get('invite');
 
   console.log(coupon);
 
@@ -67,6 +68,7 @@ const ShippingPage: React.FC = () => {
       const response = await appAxios.post('/payment/sellix', {
         cart,
         coupon,
+        invite,
         email: data.email,
         orderId: _id,
       });

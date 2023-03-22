@@ -30,6 +30,7 @@ const CartPage: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = React.useState<'card' | 'crypto'>(
     'card'
   );
+  const [email, setEmail] = React.useState<string>('');
 
   const fetchProducts = React.useCallback(async () => {
     const products = [];
@@ -77,10 +78,11 @@ const CartPage: React.FC = () => {
         const { data } = await appAxios.post('/payment', {
           cart,
           coupon: discount ? coupon : undefined,
+          invite: email.trim(),
         });
         window.location.href = data.url;
       } else if (paymentMethod === 'crypto') {
-        navigate('/order?coupon=' + coupon);
+        navigate(`/order?coupon=${coupon}&invite=${email.trim()}`);
       }
     } catch (error) {
       console.log(error);
@@ -326,6 +328,21 @@ const CartPage: React.FC = () => {
               placeholder="Enter a coupon if you have one"
               // value={coupon}
               onChange={debouncedChangeHandler}
+            />
+          </div>
+          <div className="cart__field">
+            <label
+              htmlFor="invite"
+              title="If you don't have one, leave this field blank"
+            >
+              Enter the inviter's Email
+            </label>
+            <input
+              className="cart__input"
+              type="text"
+              placeholder="example@mail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="cart__total-top">
