@@ -24,6 +24,10 @@ const navigationList = [
     href: '/track',
     title: 'Track',
   },
+  {
+    href: '/invite',
+    title: 'Invite your friends',
+  },
 ];
 
 const HeaderMenu: React.FC = () => {
