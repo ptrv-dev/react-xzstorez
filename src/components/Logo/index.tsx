@@ -9,7 +9,7 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     <Link to={'/'} className={`logo ${className}`}>
-      007WATCHES
+      XZstore
     </Link>
   );
 };

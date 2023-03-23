@@ -82,12 +82,12 @@ const HomePage: React.FC = () => {
       </div>
       <div className="info">
         <div className="info__container container">
-          <h4>007WATCHES offers exclusive accessories at a low price</h4>
+          <h4>XZstore offers exclusive clothing for a cheap price</h4>
           <p>
-            The owner of this store spent some time abroad, personally
-            acquainted with the best manufacturers of watches, and created a
-            resource for all so that people can get access to the best quality
-            accessories at an affordable price.
+            The owner of this store spent some time abroad meeting the best
+            clothing manufactureres personally, and created a resource for all
+            people to be able to access best quality clothing for an affordable
+            price
           </p>
         </div>
       </div>

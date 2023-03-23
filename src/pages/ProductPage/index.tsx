@@ -109,7 +109,7 @@ const ProductPage: React.FC = () => {
           )}
         </div>
         <div className="product__col">
-          <p className="product__suptitle">007WATCHES</p>
+          <p className="product__suptitle">XZstore</p>
           <h1 className="product__title">{product.title}</h1>
           <p className="product__price">
             {Number(product.price.$numberDecimal).toLocaleString('en-US', {
