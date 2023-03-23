@@ -82,7 +82,7 @@ const HomePage: React.FC = () => {
       </div>
       <div className="info">
         <div className="info__container container">
-          <h4>007WATCHES offers exclusive clothing for a cheap price</h4>
+          <h4>007WATCHES offers exclusive accessories at a low price</h4>
           <p>
             The owner of this store spent some time abroad, personally
             acquainted with the best manufacturers of watches, and created a
