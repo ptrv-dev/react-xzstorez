@@ -20,6 +20,7 @@ const ProductPage: React.FC = () => {
   const [width] = useWindowSize();
 
   const [product, setProduct] = React.useState<ProductItem>();
+  const [loading, setLoading] = React.useState(false);
   const [notFound, setNotFound] = React.useState(false);
 
   const [quantity, setQuantity] = React.useState<number>(1);
@@ -51,6 +52,8 @@ const ProductPage: React.FC = () => {
 
   if (!product) return <LoadingPage />;
 
+  if (loading) return <LoadingPage />;
+
   const handleAddToCart = () => {
     dispatch(add({ _id: product._id, size: size, quantity: quantity }));
   };
@@ -65,11 +68,14 @@ const ProductPage: React.FC = () => {
           quantity,
         },
       ];
-      const { data } = await appAxios.post('/payment', cart);
+      setLoading(true);
+      const { data } = await appAxios.post('/payment', { cart: cart });
       window.location.href = data.url;
     } catch (error) {
       console.log(error);
       alert('Something going wrong...');
+    } finally {
+      setLoading(false);
     }
   };
 
