@@ -69,7 +69,7 @@ const ProductPage: React.FC = () => {
         },
       ];
       setLoading(true);
-      const { data } = await appAxios.post('/payment', { cart: cart });
+      const { data } = await appAxios.post('/payment/squareup', { cart: cart });
       window.location.href = data.url;
     } catch (error) {
       console.log(error);
@@ -78,6 +78,8 @@ const ProductPage: React.FC = () => {
       setLoading(false);
     }
   };
+
+  if (loading) return <LoadingPage />;
 
   return (
     <div className="product">
