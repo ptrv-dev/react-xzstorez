@@ -140,7 +140,7 @@ const ShippingPage: React.FC = () => {
               type="text"
               id="state"
               {...register('state', {
-                required: { value: true, message: 'Required' },
+                // required: { value: true, message: 'Required' },
                 minLength: { value: 2, message: 'Minimum length 2' },
                 maxLength: { value: 128, message: 'Maximum length 128' },
               })}
