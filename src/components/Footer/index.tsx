@@ -6,10 +6,10 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer__contacts container">
         <h4>Our contacts</h4>
-        <p>Telegram: @XZstore44</p>
+        <p>Telegram: @007watches_manager</p>
       </div>
       <div className="footer__container container">
-        <p className="footer__copyright">2023 © XZstore</p>
+        <p className="footer__copyright">2023 © 007WATCHES</p>
       </div>
     </footer>
   );
