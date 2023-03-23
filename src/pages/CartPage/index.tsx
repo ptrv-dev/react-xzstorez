@@ -248,7 +248,7 @@ const CartPage: React.FC = () => {
                 </svg>
                 Credit Card
               </div>
-              <div
+              {/* <div
                 className={`cart-method__item ${
                   paymentMethod === 'crypto' ? 'cart-method__item_active' : ''
                 }`}
@@ -317,7 +317,7 @@ const CartPage: React.FC = () => {
                   ></path>
                 </svg>
                 Crypto
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="cart__field">
