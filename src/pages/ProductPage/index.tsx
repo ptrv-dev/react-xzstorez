@@ -65,7 +65,7 @@ const ProductPage: React.FC = () => {
           quantity,
         },
       ];
-      const { data } = await appAxios.post('/payment', cart);
+      const { data } = await appAxios.post('/payment/squareup', { cart: cart });
       window.location.href = data.url;
     } catch (error) {
       console.log(error);
