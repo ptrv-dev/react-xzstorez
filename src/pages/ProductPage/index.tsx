@@ -20,6 +20,7 @@ const ProductPage: React.FC = () => {
   const [width] = useWindowSize();
 
   const [product, setProduct] = React.useState<ProductItem>();
+  const [loading, setLoading] = React.useState(false);
   const [notFound, setNotFound] = React.useState(false);
 
   const [quantity, setQuantity] = React.useState<number>(1);
@@ -65,13 +66,18 @@ const ProductPage: React.FC = () => {
           quantity,
         },
       ];
+      setLoading(true);
       const { data } = await appAxios.post('/payment/squareup', { cart: cart });
       window.location.href = data.url;
     } catch (error) {
       console.log(error);
       alert('Something going wrong...');
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) return <LoadingPage />;
 
   return (
     <div className="product">
